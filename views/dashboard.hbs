@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-layout">
+    <!-- Sidebar Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">⚡</div>
+        <span class="brand-text">AdminHub</span>
+        <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">✕</button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="/dashboard" class="nav-item active">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#users" class="nav-item">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          Users
+        </a>
+        <a href="#tasks" class="nav-item">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Tasks
+        </a>
+        <a href="#settings" class="nav-item">
+          <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="session-info">
+          <span class="status-indicator online"></span>
+          <span>In-Memory Auth</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="hamburger-btn" id="sidebar-toggle-btn" aria-label="Open menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <h1 class="page-title">Dashboard</h1>
+        </div>
+        <div class="header-right">
+          <div class="user-badge">
+            <div class="user-avatar">{{user.name.[0]}}</div>
+            <div class="user-meta">
+              <span class="user-name">{{user.name}}</span>
+              <span class="user-email">{{user.email}}</span>
+            </div>
+          </div>
+          <button id="logout-btn" class="btn btn-outline btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <main class="content-body">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <h2>Welcome back, {{user.name}}! 👋</h2>
+          <p>Here is what's happening with your application today.</p>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="card metric-card">
+            <div class="metric-icon blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Total Users</span>
+              <span class="metric-value">{{totalUsers}}</span>
+              <span class="metric-trend positive">↑ 18% this month</span>
+            </div>
+          </div>
+
+          <div class="card metric-card highlight">
+            <div class="metric-icon green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Active Sessions</span>
+              <span class="metric-value" id="active-sessions-count">{{activeSessions}}</span>
+              <span class="metric-badge live">● Live in Memory</span>
+            </div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Total Tasks</span>
+              <span class="metric-value">{{totalTasks}}</span>
+              <span class="metric-trend positive">↑ 7% · {{completedTasks}} completed</span>
+            </div>
+          </div>
+
+          <div class="card metric-card">
+            <div class="metric-icon orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">System Uptime</span>
+              <span class="metric-value">{{uptimePercent}}%</span>
+              <span class="metric-trend positive">● All systems nominal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activities — Stripe/Linear pattern:
+             Desktop: full 4-column table
+             Mobile: stacked card list (no truncation, no horizontal scroll) -->
+        <div class="card activity-section">
+          <div class="card-header">
+            <h3>Recent Activities</h3>
+            <span class="badge">Live Logs</span>
+          </div>
+
+          <!-- Desktop table (hidden on mobile via CSS) -->
+          <div class="table-wrap" role="region" aria-label="Recent Activities" tabindex="0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Activity</th>
+                  <th>Initiator</th>
+                  <th>Timestamp</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each activities}}
+                <tr>
+                  <td class="font-medium">{{this.action}}</td>
+                  <td class="text-muted">{{this.user}}</td>
+                  <td class="text-muted">{{this.time}}</td>
+                  <td><span class="tag tag-{{this.statusClass}}">{{this.status}}</span></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile stacked list (hidden on desktop via CSS) -->
+          <ul class="activity-list" aria-label="Recent Activities">
+            {{#each activities}}
+            <li class="activity-row">
+              <div class="activity-row-main">
+                <span class="activity-name">{{this.action}}</span>
+                <span class="tag tag-{{this.statusClass}}">{{this.status}}</span>
+              </div>
+              <div class="activity-row-meta">
+                <span class="activity-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  {{this.user}}
+                </span>
+                <span class="activity-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {{this.time}}
+                </span>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
